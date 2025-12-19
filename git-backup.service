@@ -1,0 +1,21 @@
+[Unit]
+Description=Git Repository Backup Service
+Documentation=man:rsync(1)
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/git-backup
+StandardOutput=journal
+StandardError=journal
+
+# Security hardening
+PrivateTmp=yes
+NoNewPrivileges=yes
+
+# Restart policy
+Restart=on-failure
+RestartSec=5min
+
+[Install]
+WantedBy=multi-user.target

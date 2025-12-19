@@ -1,0 +1,14 @@
+[Unit]
+Description=Git Repository Backup Timer
+Documentation=man:systemd.timer(5)
+
+[Timer]
+# Run daily midnight
+OnCalendar=daily
+# Set persistent to run missed backups after system boot
+Persistent=true
+# Randomize execution time by up to 30 minutes to avoid load spikes
+RandomizedDelaySec=30min
+
+[Install]
+WantedBy=timers.target
