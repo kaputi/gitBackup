@@ -24,8 +24,10 @@ sudo ./install.sh
 ### Manual Install
 
 ```bash
+# build script (requires go)
+make
 # Copy script to system
-sudo cp git-backup.sh /usr/local/bin/git-backup
+sudo cp ./bin/git-backup /usr/local/bin/git-backup
 sudo chmod +x /usr/local/bin/git-backup
 
 # Create config directory
@@ -368,24 +370,6 @@ git fsck
 ```
 
 ## Advanced Options
-
-### Exclude Certain Directories
-
-Edit `/usr/local/bin/git-backup` and modify rsync command:
-
-```bash
-rsync -avz --delete \
-    --exclude='*.tmp' \
-    --exclude='cache/' \
-    --stats \
-    "$SOURCE_PATH/" \
-    "$CURRENT_BACKUP/"
-```
-
-Then reload:
-```bash
-sudo systemctl daemon-reload
-```
 
 ### Email Notifications on Failure
 
